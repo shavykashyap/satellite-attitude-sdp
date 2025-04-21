@@ -1,0 +1,33 @@
+# MATLAB temporary files
+*.asv
+*.m~ 
+*.mat
+*.mlx
+*.mlappinstall
+*.mex*
+
+# Simulink autosave and cache files
+*.slxc
+*.slx.autosave
+*.slprj/
+*.sldd.autosave
+*.sfx
+*.mdl.autosave
+
+# System files
+.DS_Store
+Thumbs.db
+Icon?
+desktop.ini
+
+# Log files
+*.log
+
+# Hidden folders
+.idea/
+.vscode/
+*.bak
+
+# User-specific MATLAB settings
+*.mcrCache*
+*.simulink_cache/
