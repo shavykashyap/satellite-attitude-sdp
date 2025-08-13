@@ -4,13 +4,13 @@ function [u_opt, omega_opt, q_opt, alpha] = solveSDPControl(u)
     % for quaternion-based spacecraft control with constraints.
     %
     % INPUTS:
-    %   - w                 : Sun vector (3×1) (inertial coordinates)
-    %   - v_b               : Boresight vector (3×1) (body coordinates)
+    %   - w                 : Sun vector (3x1) (inertial coordinates)
+    %   - v_b               : Boresight vector (3x1) (body coordinates)
     %   - cos_th            : Minimum angular separation (degrees)
     %   - d_t               : Sampling time (seconds)
-    %   - J                 : Spacecraft inertia matrix (3×3)
-    %   - q_d               : Desired quaternion (4×1)
-    %   - q                 : Current quaternion (4×1)
+    %   - J                 : Spacecraft inertia matrix (3x3)
+    %   - q_d               : Desired quaternion (4x1)
+    %   - q                 : Current quaternion (4x1)
     %   - omega_N           : Desired Angular Velocity (3x1)
     %   - omega             : Angular Velocity (3x1)    
     %   - omega_discrete    : Discrete Angular Velocity (3x1)
@@ -19,9 +19,9 @@ function [u_opt, omega_opt, q_opt, alpha] = solveSDPControl(u)
     %   - H                 : (4x10)
     %
     % OUTPUTS:
-    %   - u_opt             : Optimal control torque (3×1)
-    %   - omega_opt         : Optimal angular velocity (3×1)
-    %   - q_opt             : Optimal quaternion (4×1)
+    %   - u_opt             : Optimal control torque (3x1)
+    %   - omega_opt         : Optimal angular velocity (3x1)
+    %   - q_opt             : Optimal quaternion (4x1)
     %   - alpha             : Optimal Slack Variable (1x1)
     % ============================================================
 
@@ -29,15 +29,15 @@ function [u_opt, omega_opt, q_opt, alpha] = solveSDPControl(u)
     u = reshape(u, [31, 1]);
 
     % Extract Required Variables from `u`
-    w       = u(1:3);               % Sun vector(inertial) (3×1)
-    v_b     = u(4:6);               % Boresight vector(body) (3×1)
+    w       = u(1:3);               % Sun vector(inertial) (3x1)
+    v_b     = u(4:6);               % Boresight vector(body) (3x1)
     cos_th  = u(7);                 % Cosine of Minimum angular separation (scalar)
     d_t     = u(8);                % Sampling time (scalar)
-    J       = reshape(u(9:17), 3, 3); % Spacecraft inertia matrix (3×3)
-    q_N     = u(18:21);          % Desired quaternion (4×1)
-    q       = u(22:25);            % Current quaternion (4×1)
-    omega_N = u(26:28);      % Desired Angular Velocity (3×1)
-    omega   = u(29:31);        % Current Angular Velocity (3×1)
+    J       = reshape(u(9:17), 3, 3); % Spacecraft inertia matrix (3x3)
+    q_N     = u(18:21);          % Desired quaternion (4x1)
+    q       = u(22:25);            % Current quaternion (4x1)
+    omega_N = u(26:28);      % Desired Angular Velocity (3x1)
+    omega   = u(29:31);        % Current Angular Velocity (3x1)
 
     % Previous timestep 
     % u_k_1 = u(32:34);
