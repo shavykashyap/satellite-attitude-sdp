@@ -12,8 +12,9 @@ This repository implements a **semidefinite programming (SDP)**-based controller
 
 - **Control Method:** Semidefinite Programming (via YALMIP and MOSEK)
 - **State Representation:** Quaternions for 3D attitude
-- **Constraints:** Minimum angular separation between the satellite boresight vector and the Sun vector
+- **Constraints:** Minimum angular separation between the satellite boresight vector and the Sun vector(Keep-out constraint), the Euler's dynamics and quaternion kinematics, the angular velocity bound , control torque bound, and the final states 
 - **Simulation Environment:** MATLAB & Simulink
+
 
 ## 📂 Features
 
@@ -28,18 +29,25 @@ This repository implements a **semidefinite programming (SDP)**-based controller
 
 - MATLAB R2021b or later
 - Simulink
+- [CVX](https://cvxr.com/cvx/download/)
 - [YALMIP](https://yalmip.github.io/download/)
 - [MOSEK](https://www.mosek.com/downloads/)
 
-<!-- ## 🎥 Example Output
+## How to run
 
-> A sample animation showing the satellite cone tracking and constraint enforcement will be added here. -->
+1. Open the repo in MATLAB. Set the current folder to the repo root.
 
-<!-- ## 🛠️ TODO
+2. Add paths. Home → Set Path → Add with Subfolders → select the repo root → Save.
 
-- Add support for different Sun vector trajectories
-- Compare with LQR and PD controllers
-- Improve real-time visualization for feedback+SDP hybrid -->
+3. Configure a scenario. Edit `Code/initialize_satellite_simulation.m` (desired quaternion, torque/rate limits, cone angles). Save.
+
+4. Solve the constrained plan (SDP). Run `solveSDPControl.m`. This calls YALMIP/MOSEK and writes outputs under `Results/<run_name>`.
+
+5. Plot results. Run `plot_SDPsim_results.m` (or `plot_SDP_sim_results.mlx`). Figures are saved into the same `Results/<run_name>` folder.
+
+6. (Optional) Track in Simulink. Open `CubeSat_SDP_PD_Attitude.slx`, select the mode that uses the SDP reference (or the unconstrained PD baseline), and Run.
+
+7. Reproduce example bundles. The folders in `Results/` (e.g., `1ki_*`, `1ko_*`, `2ki_*`, `2ko_*`, `no_constraint_plots`) come from the same steps with different cone settings. Match settings in `initialize_satellite_simulation.m` and repeat steps 4–5.
 
 ## 📜 License
 
