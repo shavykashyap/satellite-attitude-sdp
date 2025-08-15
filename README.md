@@ -27,8 +27,9 @@ Constrained spacecraft attitude control using **Semidefinite Programming (SDP)**
 4. **Solve (SDP):** run `initialize_satellite_simulation` (calls `solveSDPControl.m`). Results are written to `Results/<run_name>`.  
 5. **Plot:** run `plot_SDPsim_results.m` (or `plot_SDP_sim_results.mlx`) to save figures in `Results/<run_name>`.  
 6. **(Optional) Simulink tracking:** open `CubeSat_SDP_PD_Attitude.slx`, select **SDP reference** (or baseline PD), and **Run**.  
-   - *What Simulink does:* a quaternion-PD tracker compares measured attitude to the SDP reference, applies torque limits, and integrates Euler/quaternion dynamics; logs (`q`, `ω`, `u`, errors, margins) go to `Results/<run_name>`.  
-7. **Reproduce example bundles:** folders under `Results/` (e.g., `1ki_*`, `1ko_*`, `2ki_*`, `2ko_*`, `no_constraint_plots`) use the same steps with different cone settings.
+   - *What Simulink does:* a quaternion-PD feedback regulator compares measured attitude to the SDP reference, calculates the error caused by the model uncertainities, and tries to minimise it, by appling control torque.
+   
+<!-- 7. **Reproduce example bundles:** folders under `Results/` (e.g., `1ki_*`, `1ko_*`, `2ki_*`, `2ko_*`, `no_constraint_plots`) use the same steps with different cone settings. -->
 
 ## 📜 License
 MIT License
